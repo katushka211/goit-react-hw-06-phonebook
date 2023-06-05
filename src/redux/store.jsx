@@ -1,13 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { contactsReducer, filterReducer } from './reducer';
-import { createAction } from '@reduxjs/toolkit';
+import { contactSlice } from './contacts/slice';
+import { filterSlice } from './filter/slice';
 
 export const store = configureStore({
   reducer: {
-    contacts: contactsReducer,
-    filter: filterReducer,
+    contacts: contactSlice.reducer,
+    filter: filterSlice.reducer,
   },
 });
-
-const addContact = createAction('contacts/addContact');
-console.log(addContact(100));
