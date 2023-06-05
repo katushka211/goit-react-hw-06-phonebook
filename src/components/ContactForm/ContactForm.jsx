@@ -23,14 +23,15 @@ const contactFormSchema = yup.object().shape({
     .required('Required!'),
 });
 
-export const ContactForm = ({ onSave }) => {
+export const ContactForm = () => {
   const dispatch = useDispatch();
+
   return (
     <Formik
       initialValues={{ name: '', number: '' }}
       validationSchema={contactFormSchema}
       onSubmit={(values, actions) => {
-        dispatch(addContact({ ...values }));
+        dispatch(addContact(values));
         actions.resetForm();
       }}
     >
