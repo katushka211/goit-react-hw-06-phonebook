@@ -3,6 +3,8 @@ import { Form, ErrorMessage } from './ContactForm.styled';
 import * as yup from 'yup';
 import 'yup-phone';
 import { ButtonForm } from './ContactForm.styled';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/contacts/slice';
 
 const contactFormSchema = yup.object().shape({
   name: yup
@@ -22,12 +24,13 @@ const contactFormSchema = yup.object().shape({
 });
 
 export const ContactForm = ({ onSave }) => {
+  const dispatch = useDispatch();
   return (
     <Formik
       initialValues={{ name: '', number: '' }}
       validationSchema={contactFormSchema}
       onSubmit={(values, actions) => {
-        onSave({ ...values });
+        dispatch(addContact({ ...values }));
         actions.resetForm();
       }}
     >
