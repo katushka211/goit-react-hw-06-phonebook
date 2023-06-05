@@ -1,16 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import initialContactsData from '../../components/contacts.json';
 
 export const contactSlice = createSlice({
   name: 'contacts',
-  initialState: [],
+  initialState: {
+    initialContacts: initialContactsData,
+  },
   reducers: {
     addContact(state, action) {
-      state.push(action.payload);
+      state.initialContacts.push(action.payload);
     },
     deleteContact(state, action) {
-      return state.filter(contact => contact.id !== action.payload);
+      state.initialContacts = state.initialContacts.filter(
+        contact => contact.id !== action.payload
+      );
     },
   },
 });
