@@ -6,9 +6,6 @@ export const filterSlice = createSlice({
     changeFilter(_, action) {
       return action.payload;
     },
-    deleteContact(state, action) {
-      return state.filter(contact => contact.id !== action.payload);
-    },
   },
 });
 export const { changeFilter } = filterSlice.actions;
